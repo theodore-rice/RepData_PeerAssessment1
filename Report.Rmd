@@ -1,0 +1,50 @@
+---
+title: "Personal Movement Analysis"
+author: "Theodore Rice"
+date: "August 3, 2015"
+output: html_document
+---
+
+This essay will analyse data collected from a personal activity monitoring device.  Data was collected at five minute intervals throughout the day during October and November of 2012.  The number of steps taken in each five minute interval was recorded.
+We read the data into R:
+
+```{r}
+Act<-read.csv("Activity.csv")
+```
+
+The first goal is to calculate the total number of steps taken each day.  I did this using the dplyr package.
+```{r loading,message=FALSE}
+library(dplyr)
+byDate<-Act %>% group_by(date) %>% summarise(sum(steps))
+colnames(byDate)<-c("date","steps")
+```
+The result in a data frame containing the total number of steps taken each day.  We can analyse the results with a histogram.  This will let us see the distribution of the total steps taken.
+
+```{r message=FALSE}
+library(ggplot2)
+ggplot(data=byDate,aes(byDate$step))+geom_histogram(col="red", fill="blue")+labs(x="Steps Taken",y="Count")
+```
+
+We compute the mean and median of the steps taken by day:
+```{r output="hide"}
+options(scipen=6)
+mean<-round(mean(byDate$steps, na.rm=TRUE),2)
+median<-median(byDate$steps, na.rm=TRUE)
+```
+The mean is found to be `r round(mean,2)`, and the median is `r median`.  These were computed while ignoring missing values.
+
+Next, we are interested to see how the activity rate varies by 5-minute interval.  (That is throughout the day).  The code below creates a data frame containing the average number of steps across all days by 5-minute interval and plots a time-series graph.
+```{r}
+byInt<-Act %>% group_by(interval) %>% summarise(mean(steps,na.rm=TRUE))
+colnames(byInt)<-c("Interval","AvgSteps")
+plot(byInt$Interval,byInt$AvgSteps,type="l")
+```  
+
+We are interested in what interval contains the largest average number of steps (and what that number is).  The following code gets this row.
+
+```{r results="hide"}
+byInt[which.max(byInt$AvgSteps),]
+```
+We see that interval `r byInt[which.max(byInt$AvgSteps),][1]` has the largest average number of steps which is `r byInt[which.max(byInt$AvgSteps),][2]`.
+
+
