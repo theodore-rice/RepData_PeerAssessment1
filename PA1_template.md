@@ -104,28 +104,13 @@ We make a histogram number of steps taken each day in this new data frame.
 ```r
 byDatefilled<-Actfilled %>% group_by(date) %>% summarise(sum(steps))
 colnames(byDatefilled)<-c("date","steps")
-ggplot(data=byDatefilled,aes(byDatefilled$step))
+g<-ggplot(data=byDatefilled,aes(byDatefilled$step))
+g<-g+geom_histogram(col="blue", fill="red")
+g<-g+labs(x="Steps Taken",y="Count")
+print(g)
 ```
 
-```
-## Error: No layers in plot
-```
-
-```r
-      +geom_histogram(col="blue", fill="red")
-```
-
-```
-## Error in +geom_histogram(col = "blue", fill = "red"): invalid argument to unary operator
-```
-
-```r
-      +labs(x="Steps Taken",y="Count")
-```
-
-```
-## Error in +labs(x = "Steps Taken", y = "Count"): invalid argument to unary operator
-```
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
 
 We compute the mean and median of the steps taken by day:
 
