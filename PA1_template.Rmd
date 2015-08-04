@@ -29,8 +29,8 @@ We can analyse the results with a histogram.  This will let us see the distribut
 ```{r message=FALSE}
 library(ggplot2)
 g<-ggplot(data=byDate,aes(byDate$step))
-g<-q+geom_histogram(col="red", fill="blue")
-g<-g++labs(x="Steps Taken",y="Count")
+g<-g+geom_histogram(col="red", fill="blue")
+g<-g+labs(x="Steps Taken",y="Count")
 print(g)
 ```
 

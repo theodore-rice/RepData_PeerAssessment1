@@ -32,28 +32,12 @@ We can analyse the results with a histogram.  This will let us see the distribut
 ```r
 library(ggplot2)
 g<-ggplot(data=byDate,aes(byDate$step))
-g<-q+geom_histogram(col="red", fill="blue")
-```
-
-```
-## Error in q + geom_histogram(col = "red", fill = "blue"): non-numeric argument to binary operator
-```
-
-```r
-g<-g++labs(x="Steps Taken",y="Count")
-```
-
-```
-## Error in +labs(x = "Steps Taken", y = "Count"): invalid argument to unary operator
-```
-
-```r
+g<-g+geom_histogram(col="red", fill="blue")
+g<-g+labs(x="Steps Taken",y="Count")
 print(g)
 ```
 
-```
-## Error: No layers in plot
-```
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 We compute the mean and median of the steps taken by day:
 
