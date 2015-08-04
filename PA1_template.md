@@ -31,10 +31,28 @@ We can analyse the results with a histogram.  This will let us see the distribut
 
 ```r
 library(ggplot2)
-ggplot(data=byDate,aes(byDate$step))+geom_histogram(col="red", fill="blue")+labs(x="Steps Taken",y="Count")
+ggplot(data=byDate,aes(byDate$step))
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+```
+## Error: No layers in plot
+```
+
+```r
+      +geom_histogram(col="red", fill="blue")
+```
+
+```
+## Error in +geom_histogram(col = "red", fill = "blue"): invalid argument to unary operator
+```
+
+```r
+      +labs(x="Steps Taken",y="Count")
+```
+
+```
+## Error in +labs(x = "Steps Taken", y = "Count"): invalid argument to unary operator
+```
 
 We compute the mean and median of the steps taken by day:
 
@@ -54,7 +72,9 @@ Next, we are interested to see how the activity rate varies by 5-minute interval
 ```r
 byInt<-Act %>% group_by(interval) %>% summarise(mean(steps,na.rm=TRUE))
 colnames(byInt)<-c("Interval","AvgSteps")
-plot(byInt$Interval,byInt$AvgSteps,type="l", xlab="Interval",ylab="Avg Num of steps", main="Average number of steps by interval" )
+plot(byInt$Interval,byInt$AvgSteps,type="l", 
+     xlab="Interval",ylab="Avg Num of steps", 
+     main="Average number of steps by interval" )
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
@@ -99,10 +119,28 @@ We make a histogram number of steps taken each day in this new data frame.
 ```r
 byDatefilled<-Actfilled %>% group_by(date) %>% summarise(sum(steps))
 colnames(byDatefilled)<-c("date","steps")
-ggplot(data=byDatefilled,aes(byDatefilled$step))+geom_histogram(col="blue", fill="red")+labs(x="Steps Taken",y="Count")
+ggplot(data=byDatefilled,aes(byDatefilled$step))
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+```
+## Error: No layers in plot
+```
+
+```r
+      +geom_histogram(col="blue", fill="red")
+```
+
+```
+## Error in +geom_histogram(col = "blue", fill = "red"): invalid argument to unary operator
+```
+
+```r
+      +labs(x="Steps Taken",y="Count")
+```
+
+```
+## Error in +labs(x = "Steps Taken", y = "Count"): invalid argument to unary operator
+```
 
 We compute the mean and median of the steps taken by day:
 
@@ -133,8 +171,10 @@ We make time series plots for weekdays and weekends:
 Intbywknd<-Actfilled %>% group_by(Wknd,interval) %>% summarise(mean(steps))
 colnames(Intbywknd)<-c("Wknd","Interval", "Avgsteps")
 par(mfrow=c(2,1))
-plot(Intbywknd[Intbywknd$Wknd=="weekday",]$Interval,Intbywknd[Intbywknd$Wknd=="weekday",]$Avgsteps, type="l",xlab="Interval",ylab="Number of Steps", main="Weekdays")
-plot(Intbywknd[Intbywknd$Wknd=="weekend",]$Interval,Intbywknd[Intbywknd$Wknd=="weekend",]$Avgsteps, type="l",xlab="Interval",ylab="Number of Steps", main="Weekends")
+plot(Intbywknd[Intbywknd$Wknd=="weekday",]$Interval,Intbywknd[Intbywknd$Wknd=="weekday",]$Avgsteps, 
+     type="l",xlab="Interval",ylab="Number of Steps", main="Weekdays")
+plot(Intbywknd[Intbywknd$Wknd=="weekend",]$Interval,Intbywknd[Intbywknd$Wknd=="weekend",]$Avgsteps, 
+     type="l",xlab="Interval",ylab="Number of Steps", main="Weekends")
 ```
 
 ![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
