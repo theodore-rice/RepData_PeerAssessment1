@@ -1,10 +1,5 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-author: "Theodore Rice"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
+Theodore Rice  
 
 ##Introduction
 
@@ -14,15 +9,6 @@ This essay will analyse data collected from a personal activity monitoring devic
 
 ```r
 Act<-read.csv("Activity.csv")
-```
-
-```
-## Warning in file(file, "rt"): cannot open file 'Activity.csv': No such file
-## or directory
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
 ```
 The data appear in a table with 3 columns: steps, date, and interval.  The data appear to be tidy and nicely formatted.  Certain questions will require processing to answer those questions, but the data appear to be in a format suitable for analysis.
 
@@ -43,7 +29,7 @@ library(ggplot2)
 ggplot(data=byDate,aes(byDate$step))+geom_histogram(col="red", fill="blue")+labs(x="Steps Taken",y="Count")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 We compute the mean and median of the steps taken by day:
 
@@ -66,7 +52,7 @@ colnames(byInt)<-c("Interval","AvgSteps")
 plot(byInt$Interval,byInt$AvgSteps,type="l", xlab="Interval",ylab="Avg Num of steps", main="Average number of steps by interval" )
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
 
 We are interested in what interval contains the largest average number of steps (and what that number is).  The following code gets this row.
 
@@ -111,7 +97,7 @@ colnames(byDatefilled)<-c("date","steps")
 ggplot(data=byDatefilled,aes(byDatefilled$step))+geom_histogram(col="blue", fill="red")+labs(x="Steps Taken",y="Count")
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
 
 We compute the mean and median of the steps taken by day:
 
@@ -146,6 +132,6 @@ plot(Intbywknd[Intbywknd$Wknd=="weekday",]$Interval,Intbywknd[Intbywknd$Wknd=="w
 plot(Intbywknd[Intbywknd$Wknd=="weekend",]$Interval,Intbywknd[Intbywknd$Wknd=="weekend",]$Avgsteps, type="l",xlab="Interval",ylab="Number of Steps", main="Weekends")
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
 
 We see that the weekday and weekend patterns are different.  The weekday pattern has one predominant spike, while the weekend pattern is moderately high throughout the middle of the day and afternoon- probably due to "weekend warriors."
