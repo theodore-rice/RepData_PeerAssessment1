@@ -28,9 +28,10 @@ We can analyse the results with a histogram.  This will let us see the distribut
 
 ```{r message=FALSE}
 library(ggplot2)
-ggplot(data=byDate,aes(byDate$step))
-      +geom_histogram(col="red", fill="blue")
-      +labs(x="Steps Taken",y="Count")
+g<-ggplot(data=byDate,aes(byDate$step))
+g<-q+geom_histogram(col="red", fill="blue")
+g<-g++labs(x="Steps Taken",y="Count")
+print(g)
 ```
 
 We compute the mean and median of the steps taken by day:

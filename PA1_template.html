@@ -224,22 +224,23 @@ colnames(byDate)&lt;-c(&quot;date&quot;,&quot;steps&quot;)
 <p>We can analyse the results with a histogram.  This will let us see the distribution of the total steps taken each day.</p>
 
 <pre><code class="r">library(ggplot2)
-ggplot(data=byDate,aes(byDate$step))
+g&lt;-ggplot(data=byDate,aes(byDate$step))
+g&lt;-q+geom_histogram(col=&quot;red&quot;, fill=&quot;blue&quot;)
 </code></pre>
 
-<pre><code>## Error: No layers in plot
+<pre><code>## Error in q + geom_histogram(col = &quot;red&quot;, fill = &quot;blue&quot;): non-numeric argument to binary operator
 </code></pre>
 
-<pre><code class="r">      +geom_histogram(col=&quot;red&quot;, fill=&quot;blue&quot;)
-</code></pre>
-
-<pre><code>## Error in +geom_histogram(col = &quot;red&quot;, fill = &quot;blue&quot;): invalid argument to unary operator
-</code></pre>
-
-<pre><code class="r">      +labs(x=&quot;Steps Taken&quot;,y=&quot;Count&quot;)
+<pre><code class="r">g&lt;-g++labs(x=&quot;Steps Taken&quot;,y=&quot;Count&quot;)
 </code></pre>
 
 <pre><code>## Error in +labs(x = &quot;Steps Taken&quot;, y = &quot;Count&quot;): invalid argument to unary operator
+</code></pre>
+
+<pre><code class="r">print(g)
+</code></pre>
+
+<pre><code>## Error: No layers in plot
 </code></pre>
 
 <p>We compute the mean and median of the steps taken by day:</p>

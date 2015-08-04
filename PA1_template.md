@@ -31,27 +31,28 @@ We can analyse the results with a histogram.  This will let us see the distribut
 
 ```r
 library(ggplot2)
-ggplot(data=byDate,aes(byDate$step))
+g<-ggplot(data=byDate,aes(byDate$step))
+g<-q+geom_histogram(col="red", fill="blue")
 ```
 
 ```
-## Error: No layers in plot
-```
-
-```r
-      +geom_histogram(col="red", fill="blue")
-```
-
-```
-## Error in +geom_histogram(col = "red", fill = "blue"): invalid argument to unary operator
+## Error in q + geom_histogram(col = "red", fill = "blue"): non-numeric argument to binary operator
 ```
 
 ```r
-      +labs(x="Steps Taken",y="Count")
+g<-g++labs(x="Steps Taken",y="Count")
 ```
 
 ```
 ## Error in +labs(x = "Steps Taken", y = "Count"): invalid argument to unary operator
+```
+
+```r
+print(g)
+```
+
+```
+## Error: No layers in plot
 ```
 
 We compute the mean and median of the steps taken by day:
