@@ -1,5 +1,10 @@
-# Reproducible Research: Peer Assessment 1
-Theodore Rice  
+---
+title: "Reproducible Research: Peer Assessment 1"
+author: "Theodore Rice"
+output: 
+  html_document:
+    keep_md: true
+---
 
 ##Introduction
 
@@ -29,7 +34,7 @@ library(ggplot2)
 ggplot(data=byDate,aes(byDate$step))+geom_histogram(col="red", fill="blue")+labs(x="Steps Taken",y="Count")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 We compute the mean and median of the steps taken by day:
 
@@ -52,7 +57,7 @@ colnames(byInt)<-c("Interval","AvgSteps")
 plot(byInt$Interval,byInt$AvgSteps,type="l", xlab="Interval",ylab="Avg Num of steps", main="Average number of steps by interval" )
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
 We are interested in what interval contains the largest average number of steps (and what that number is).  The following code gets this row.
 
@@ -97,7 +102,7 @@ colnames(byDatefilled)<-c("date","steps")
 ggplot(data=byDatefilled,aes(byDatefilled$step))+geom_histogram(col="blue", fill="red")+labs(x="Steps Taken",y="Count")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
 
 We compute the mean and median of the steps taken by day:
 
@@ -132,6 +137,6 @@ plot(Intbywknd[Intbywknd$Wknd=="weekday",]$Interval,Intbywknd[Intbywknd$Wknd=="w
 plot(Intbywknd[Intbywknd$Wknd=="weekend",]$Interval,Intbywknd[Intbywknd$Wknd=="weekend",]$Avgsteps, type="l",xlab="Interval",ylab="Number of Steps", main="Weekends")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
 
 We see that the weekday and weekend patterns are different.  The weekday pattern has one predominant spike, while the weekend pattern is moderately high throughout the middle of the day and afternoon- probably due to "weekend warriors."
